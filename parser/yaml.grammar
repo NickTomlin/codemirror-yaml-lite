@@ -1,0 +1,87 @@
+// https://lezer.codemirror.net/docs/guide/#writing-a-grammar
+
+@top Document { DocStart? element* }
+
+element {
+  scalar |
+  Mapping
+}
+
+Mapping {
+    Key spaces? Alias lineEnd |
+    Key spaces? MultiLine |
+    Key spaces? scalar lineEnd |
+    Key spaces? newline Indent Sequence (Dedent | eof) |
+    Key spaces? newline Indent (spaces* Mapping)* (Dedent | eof) |
+    Key spaces? Anchor newline Indent Mapping (Dedent | eof)
+}
+
+scalar {
+  Plain | Number | Boolean | String
+}
+
+Sequence {
+  (spaces? SequenceEntry)+
+}
+
+SequenceEntry {
+  ListKey scalar (newline | eof) |
+  ListKey spaces? Mapping (Indent spaces* Mapping Dedent)? (newline | eof)
+}
+
+MultiLine {
+  MultiLineKey newline Indent (MultiLineValue (newline | eof))* (Dedent | eof)
+}
+
+lineEnd { newline | eof }
+
+@context trackIndent from "./tokens.js"
+
+@external tokens Indentation from "./tokens.js" {
+  Indent
+  Dedent
+  blankLineStart
+}
+
+@tokens {
+  Anchor { "&" keyChar+ }
+  Alias { "*" keyChar+ }
+  DocStart { "---" }
+  ListKey { dash " " }
+  dash { "-" }
+  keyChar { ![|&*:>\n#\t"' ]* }
+  Key {
+    (keyChar | ":" )+ ":" |
+    String ":"
+  }
+  spaces { $[ \t]+ }
+  newline { "\n" }
+  eof { @eof }
+  Comment { "#" ![\n]+ }
+
+  Number { @digit+ }
+  Boolean { "true" | "false" | "nor" }
+  Plain { ![\n#]+ }
+  // technically the YAML spec allows for strings stretch across multiple lines
+  // we are choosing _not_ to implement that currently
+  String {
+    // https://github.com/lezer-parser/python/blob/main/src/python.grammar#L304
+    "'" (!['\\\n\r] | "\\" _)* "'" | '"' (!["\\\n\r] | "\\" _)* '"'
+  }
+
+  MultiLineKey { "|" | ">" | ">-" | "|-" }
+  // unlike Plain, this can accept anything
+  MultiLineValue { ![\n#]+ }
+
+  @precedence {MultiLineValue, Comment, Alias, Plain}
+  @precedence {MultiLineKey, ListKey, DocStart, Key, String, spaces, Boolean, Number, Anchor, Plain}
+}
+
+@skip {
+  Comment |
+  blankLineStart (spaces | Comment)+ (newline | eof)
+}
+
+@external propSource yamlHighlighting from "./highlight.js"
+
+@detectDelim

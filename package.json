@@ -1,0 +1,41 @@
+{
+  "name": "@nicktomlin/codemirror-lang-yaml-lite",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Lightweight YAML support for CodeMirror 6",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "tsup src/index.js",
+    "ui": "cd codemirror-ui && npm i && npm run dev",
+    "dev": "concurrently npm:dev:*",
+    "dev:test": "vitest",
+    "dev:grammar": "nodemon --ext grammar --exec lezer-generator parser/yaml.grammar -o parser/parser --watch parser",
+    "build:grammar": "lezer-generator parser/yaml.grammar -o parser/parser",
+    "build:grammar:debug": "lezer-generator src/yaml.grammar --names -o parser/parser"
+  },
+  "tsup": {
+    "format": ["cjs"]
+  },
+  "keywords": [],
+  "author": "NickTomlin@users.noreply.github.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@lezer/generator": "^1.4.0",
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1",
+    "vitest": "^0.33.0"
+  },
+  "dependencies": {
+    "@codemirror/language": "^6.9.0",
+    "@lezer/common": "^1.0.3",
+    "@lezer/highlight": "1.1.6",
+    "@lezer/lr": "1.3.9",
+    "tsup": "^7.2.0"
+  }
+}
