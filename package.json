@@ -1,7 +1,7 @@
 {
   "name": "@nicktomlin/codemirror-lang-yaml-lite",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lightweight YAML support for CodeMirror 6",
   "repository": "https://github.com/NickTomlin/codemirror-yaml-lite",
   "main": "./dist/index.js",
@@ -28,7 +28,10 @@
     "build:grammar:debug": "lezer-generator src/yaml.grammar --names -o parser/parser"
   },
   "tsup": {
-    "format": ["cjs", "esm"],
+    "format": [
+      "cjs",
+      "esm"
+    ],
     "target": "es2020",
     "clean": true,
     "minify": true,
