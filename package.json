@@ -3,14 +3,15 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Lightweight YAML support for CodeMirror 6",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "types": "./src/index.d.ts",
   "exports": {
-    "import": "./src/index.js",
-    "require": "./dist/index.js"
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
   },
   "scripts": {
     "test": "vitest",
+    "prepare": "npm test && npm run build",
     "build": "tsup src/index.js",
     "ui": "cd codemirror-ui && npm i && npm run dev",
     "dev": "concurrently npm:dev:*",
@@ -20,7 +21,9 @@
     "build:grammar:debug": "lezer-generator src/yaml.grammar --names -o parser/parser"
   },
   "tsup": {
-    "format": ["cjs"],
+    "format": ["cjs", "esm"],
+    "target": "es2020",
+    "clean": true,
     "minify": true,
     "sourcemap": true
   },
