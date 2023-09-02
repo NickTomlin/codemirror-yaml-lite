@@ -20,7 +20,9 @@
     "build:grammar:debug": "lezer-generator src/yaml.grammar --names -o parser/parser"
   },
   "tsup": {
-    "format": ["cjs"]
+    "format": ["cjs"],
+    "minify": true,
+    "sourcemap": true
   },
   "keywords": [],
   "author": "NickTomlin@users.noreply.github.com",
