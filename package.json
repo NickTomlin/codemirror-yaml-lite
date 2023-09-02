@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Lightweight YAML support for CodeMirror 6",
+  "repository": "https://github.com/NickTomlin/codemirror-yaml-lite",
   "main": "./dist/index.js",
   "types": "./src/index.d.ts",
   "exports": {
