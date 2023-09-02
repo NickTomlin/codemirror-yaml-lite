@@ -1,5 +1,7 @@
-// https://lezer.codemirror.net/docs/guide/#writing-a-grammar
-
+// This initially began as a fork of
+// https://github.com/teucer/vite-repro/blob/main/src/parser/yaml.grammar
+// https://discuss.codemirror.net/t/cm6-integrate-yaml-and-markdown/4494/6
+// and is indebted to that as a starting place!
 @top Document { DocStart? element* }
 
 element {
