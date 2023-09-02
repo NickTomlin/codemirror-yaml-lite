@@ -1,0 +1,7 @@
+# 👋 this is a friendly comment
+hi: there
+bool: false
+num: 1234
+string: "hi"
+multi: |
+  this is a multline string
