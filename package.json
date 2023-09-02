@@ -9,6 +9,12 @@
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
+  "files": [
+    "README.md",
+    "dist",
+    "src",
+    "parser"
+  ],
   "scripts": {
     "test": "vitest",
     "prepublishOnly": "npm test -- run && npm run build",
