@@ -1,7 +1,7 @@
 {
   "name": "@nicktomlin/codemirror-lang-yaml-lite",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lightweight YAML support for CodeMirror 6",
   "repository": "https://github.com/NickTomlin/codemirror-yaml-lite",
   "main": "./dist/index.js",
