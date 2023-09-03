@@ -27,8 +27,8 @@ Sequence {
 }
 
 SequenceEntry {
-  ListKey scalar (newline | eof) |
-  ListKey spaces? Mapping (Indent spaces* Mapping Dedent)? (newline | eof)
+  SequenceIndicator scalar (newline | eof) |
+  SequenceIndicator spaces? Mapping (Indent spaces* Mapping Dedent)? (newline | eof)
 }
 
 MultiLine {
@@ -49,7 +49,7 @@ lineEnd { newline | eof }
   Anchor { "&" keyChar+ }
   Alias { "*" keyChar+ }
   DocStart { "---" }
-  ListKey { dash " " }
+  SequenceIndicator { dash " " }
   dash { "-" }
   keyChar { ![|&*:>\n#\t"' ]* }
   Key {
@@ -76,7 +76,7 @@ lineEnd { newline | eof }
   MultiLineValue { ![\n#]+ }
 
   @precedence {MultiLineValue, Comment, Alias, Plain}
-  @precedence {MultiLineKey, ListKey, DocStart, Key, String, spaces, Boolean, Number, Anchor, Plain}
+  @precedence {MultiLineKey, SequenceIndicator, DocStart, Key, String, spaces, Boolean, Number, Anchor, Plain}
 }
 
 @skip {
