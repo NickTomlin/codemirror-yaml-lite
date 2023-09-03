@@ -1,3 +1,4 @@
 node_modules
 dist
-parser/parser.*
+parser/parser.terms.js
+parser/parser.js

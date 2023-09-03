@@ -15,13 +15,13 @@
     "dist"
   ],
   "scripts": {
-    "test": "vitest",
-    "prepublishOnly": "npm test -- run && npm run build",
-    "build": "tsup src/index.js",
+    "test": "npm run build:grammar && vitest --run",
+    "prepublishOnly": "npm test && npm run bundle",
+    "bundle": "tsup src/index.js",
     "ui:dev": "vite example-ui",
     "ui:build": "vite build example-ui --target esnext",
     "ui:preview": "vite preview example-ui",
-    "dev": "concurrently npm:dev:*",
+    "dev": "npm run build:grammar && concurrently npm:dev:*",
     "dev:test": "vitest",
     "dev:grammar": "nodemon --ext grammar --exec lezer-generator parser/yaml.grammar -o parser/parser --watch parser",
     "build:grammar": "lezer-generator parser/yaml.grammar -o parser/parser",
