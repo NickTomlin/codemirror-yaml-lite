@@ -37,6 +37,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm run build:grammar
+      - run: npm run bundle
       - run: npm run ui:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
