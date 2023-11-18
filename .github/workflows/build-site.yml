@@ -38,7 +38,10 @@ jobs:
       - run: npm ci
       - run: npm run build:grammar
       - run: npm run bundle
-      - run: npm run ui:build --base ./
+      # ensure asset paths are relative, since pages are nested by default
+      # and would try to look at <root>/assets/foo.js
+      # rather than <root>/<repo>/assets.foo.js
+      - run: npm run ui:build -- --base ./
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
