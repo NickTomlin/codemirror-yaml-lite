@@ -38,7 +38,7 @@ jobs:
       - run: npm ci
       - run: npm run build:grammar
       - run: npm run bundle
-      - run: npm run ui:build
+      - run: npm run ui:build --base ./
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
