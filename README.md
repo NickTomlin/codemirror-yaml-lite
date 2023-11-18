@@ -1,27 +1,32 @@
 Codemirror YAML Lite
 ---
 
-This package provides CodeMirror language support for a partial version of the YAML 1.2 spec, and also contains the [Lezer](https://lezer.codemirror.net/) grammar that powers it.
+This package provides CodeMirror language support for a _partial_ version of the YAML 1.2 spec, and also contains the [Lezer](https://lezer.codemirror.net/) grammar that powers it.
 
 
 ## Usage
 
-In your project:
+Add the package to your projext
 
 ```
 npm i @nicktomlin/codemirror-lang-yaml-lite
 ```
 
+And include in your CM extensions:
+
 ```
 import {yaml} from "@nicktomlin/codemirror-lang-yaml-lite"
 
-// TODO:... more here
 new EditorView({
     extensions: [
+        // ...
         yaml
     ]
 })
 ```
+
+See the [`example-ui`](./example-ui) directory for a runnable example.
+
 
 ## Contributing
 
@@ -60,9 +65,6 @@ CodeMirror 6 supports basic yaml syntax highlighting through [legacy streaming m
 - [this repo by @teucer](https://github.com/teucer/vite-repro/blob/main/src/parser/yaml.grammar)
 - the [@codemirror/lang-javascript](https://github.com/codemirror/lang-javascript#readme) package is a great reference
 - the legacy [yaml mode](https://github.com/codemirror/legacy-modes/blob/main/mode/yaml.js)
-
-
-Right now I think we sort of need a full loop that helps us generate the grammar and then preview in the editor all at once...
 
 
 #### Playgrounds
