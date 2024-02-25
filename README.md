@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> 🎉 This has now been superseded by the official[codemirror/lang-yaml](https://github.com/codemirror/lang-yaml) package 🎉
+> 🎉 This has now been superseded by the official [codemirror/lang-yaml](https://github.com/codemirror/lang-yaml) package 🎉
 > 
 > Please use that instead!
 
